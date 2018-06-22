@@ -22,7 +22,7 @@ app.use((err, req, res, next) => {
   const errToReturn = {}
   errToReturn.status = err.status || 500
   errToReturn.message = err.message || 'Something went wrong'
-  if (process.env.NODE_ENV === 'production') errToReturn.stack = err.stack
+  if (process.env.NODE_ENV !== 'production') errToReturn.stack = err.stack
 
   res.status(errToReturn.status).send(errToReturn)
 })
